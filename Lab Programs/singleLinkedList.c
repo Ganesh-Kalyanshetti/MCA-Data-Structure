@@ -20,7 +20,7 @@ struct Node* createNode(int data) {
 
 void insertAtBegin(int data) {
     if (count >= n) {
-        printf("stack is full    \n");
+        printf("stack is full\n");
         return;
     }
     struct Node* newNode = createNode(data);
@@ -32,7 +32,7 @@ void insertAtBegin(int data) {
 
 void insertAtEnd(int data) {
     if (count >= n) {
-        printf("List is full! Cannot insert more elements.\n");
+        printf("List is full\n");
         return;
     }
     struct Node* newNode = createNode(data);
@@ -67,7 +67,7 @@ void insertInMiddle(int data, int position) {
     if (temp == NULL) {
         printf("Position out of range!\n");
         free(newNode);
-        return;
+        return;// Delete from the end
     }
 
     newNode->next = temp->next;
@@ -87,7 +87,7 @@ void deleteAtBegin() {
     count--;
 }
 
-// Delete from the end
+
 void deleteAtEnd() {
     if (head == NULL) {
         printf("stack is empty!\n");
@@ -181,10 +181,10 @@ void displayList() {
 
     struct Node* temp = head;
     while (temp != NULL) {
-        printf("%d -> ", temp->data);
+        printf("%d ", temp->data);
         temp = temp->next;
     }
-    printf("NULL\n");
+    
 }
 
 
@@ -196,7 +196,7 @@ int main() {
 
     while (1) {
         
-        printf("1. Insert at Begin\n");
+        printf("\n1. Insert at Begin\n");
         printf("2. Insert at End\n");
         printf("3. Insert at a Position\n");
         printf("4. Delete from Begin\n");
@@ -250,9 +250,9 @@ int main() {
                 search(data);
                 break;
             default:
-                printf("Invalid choice! \n");
+                printf("invalid\n");    
+   
         }
     }
-
-    return 0;
 }
+
