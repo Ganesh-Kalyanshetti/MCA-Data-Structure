@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int value;
+    struct node *left, *right;
+};
+
+// Function to create a new node
+struct node* createnode(int value) {
+    struct node *newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->value = value;
+    newnode->left = newnode->right = NULL;
+    return newnode;
+}
+
+// Function to insert a node into the BST
+struct node* insertBST(struct node* root, int value) {
+    // If the tree is empty, return a new node
+    if (root == NULL) {
+        return createnode(value);
+    }
+
+    // If the value is less than the root's value, insert it in the left subtree
+    if (value < root->value) {
+        root->left = insertBST(root->left, value);
+    }
+    // If the value is greater than the root's value, insert it in the right subtree
+    else if (value > root->value) {
+        root->right = insertBST(root->right, value);
+    }
+
+    // If the value is equal to the root's value, we can skip insertion (no duplicates allowed)
+    return root;
+}
+
+// Function to calculate the depth (height) of the binary tree
+int depth(struct node* root) {
+    // Base case: If the tree is empty, return 0
+    if (root == NULL) {
+        return 0;
+    }
+
+    // Recursively calculate the depth of the left and right subtrees
+    int leftDepth = depth(root->left);
+    int rightDepth = depth(root->right);
+
+    // The depth of the tree is the maximum of the left and right subtrees' depths + 1
+    if (leftDepth > rightDepth) {
+        return leftDepth + 1;
+    } else {
+        return rightDepth + 1;
+    }
+}
+
+int main() {
+    int arr[] = {10, 33, 235, 235, 11, 23, 4, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    struct node* root = NULL;
+
+    // Insert nodes into the BST
+    for (int i = 0; i < n; i++) {
+        root = insertBST(root, arr[i]);
+    }
+
+    // Find and print the depth of the BST
+    int treeDepth = depth(root);
+    printf("Depth of the BST: %d\n", treeDepth);
+
+    return 0;
+}
