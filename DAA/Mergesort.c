@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 void merge(int arr[], int start, int mid, int end) {
-    int i = start;      // Start of left half
-    int j = mid + 1;    // Start of right half
+    int i = start;      
+    int j = mid + 1;    
     int k = 0;
 
-    int temp[end - start + 1];  // Temp array to store merged values
+    int temp[end - start + 1];  
 
     while (i <= mid && j <= end) {
         if (arr[i] <= arr[j])
@@ -14,14 +14,14 @@ void merge(int arr[], int start, int mid, int end) {
             temp[k++] = arr[j++];
     }
 
-    // Copy remaining elements
+ 
     while (i <= mid)
         temp[k++] = arr[i++];
 
     while (j <= end)
         temp[k++] = arr[j++];
 
-    // Copy sorted temp array back to original array
+    
     for (i = start, k = 0; i <= end; i++, k++)
         arr[i] = temp[k];
 }
@@ -30,10 +30,10 @@ void mergeSort(int arr[], int start, int end) {
     if (start < end) {
         int mid = (start + end) / 2;
 
-        mergeSort(arr, start, mid);       // Left half
-        mergeSort(arr, mid + 1, end);     // Right half
+        mergeSort(arr, start, mid);       
+        mergeSort(arr, mid + 1, end);     
 
-        merge(arr, start, mid, end);      // Merge them
+        merge(arr, start, mid, end);      
     }
 }
 
